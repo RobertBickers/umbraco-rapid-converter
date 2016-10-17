@@ -36,7 +36,8 @@ Example:
 
 ```.../Markup/home.html```
 
-```html
+
+~~~~html
 <div id="features">
     <div class="container">
         <div class="row header">
@@ -50,8 +51,7 @@ Example:
             </div>
         </div>
      </div>
-</div>
-```
+</div>~~~~
 
 ***
 
