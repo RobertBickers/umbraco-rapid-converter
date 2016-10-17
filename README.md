@@ -26,7 +26,7 @@ Use property notation within your markup to define
 * tab
 * editor
 
-```[[{alias="header" tab="features" editorAlias="Umbraco.Textbox" }]]```
+```[[{alias="header" tab="features" editorAlias="Umbraco.Textbox" label="header" }]]```
 
 ***
 
