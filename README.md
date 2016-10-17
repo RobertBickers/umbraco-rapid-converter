@@ -15,7 +15,7 @@ Use property notation within your markup to define
 
 ***
 
-### Defining properties in your basic markup
+### Defining properties in your markup
 
 Example:
 
