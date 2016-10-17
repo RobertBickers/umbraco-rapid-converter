@@ -58,8 +58,25 @@ ______
 
 ### Generating the Umbraco Templates along side the DocumentTypes
 
-To create the Umbraco Templates, call the ```CreateTemplatesFromConversion(generatedPairDocumentTypes)``` method. This takes the generated pair documents that are outputed from the ```GetUmbracoConversionObjects``` method.
+To create the Umbraco Templates, call the ```CreateTemplatesFromConversion(generatedPairDocumentTypes)``` method. This takes the  outputed from the ```GetUmbracoConversionObjects``` method.
 
 This will copy the content from the .html file, replacing the [[{}]] notation with the appropriate Umbraco helper method before creating the ```.cshtml``` and linking it to the document type
+
+Example:
+
+```C#
+RapidUmbracoConverter rapidConverter = new RapidUmbracoConverter(Services);
+
+ //Create the document types
+rapidConverter.DeleteAllDocumentTypes(removeOnlyConverted: true);
+var generatedPairDocumentTypes = rapidConverter.ConvertMarkupToDocumentTypes(templateDirectory, ".html");
+
+//Create the templates
+rapidConverter.DeleteAllTemplates();
+rapidConverter.CreateTemplatesFromConversion(generatedPairDocumentTypes);
+```
+***
+Note: the ```DeleteAllDocumentTypes``` and ```DeleteAllTemplates``` methods can be useful when getting everything set up, the ```DeleteAllDocumentTypes``` method has an boolean parameter that lets your define whether you wish to delete only the DocumentTypes that have been created during the conversion proccess as DocumentTypes with a corresponding flag in .AdditionalData, or all of the DocumentTypes within the Umbraco build. **Don't** use this method without first ensuring that it is valid to delete the Document Types, as this cannot be undone. 
+
 
 
