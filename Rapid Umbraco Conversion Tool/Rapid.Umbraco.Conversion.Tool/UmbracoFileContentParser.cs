@@ -112,6 +112,8 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             return new UmbracoConversionProperty()
             {
                 Alias = GetPropertyValue(tagDictionary, "alias", isRequired: true),
+                Label = GetPropertyValue(tagDictionary, "label", isRequired: true, defaultValue: GetPropertyValue(tagDictionary, "alias", isRequired: true)),
+                Description = GetPropertyValue(tagDictionary, "description", isRequired: false),
                 Editor = GetPropertyValue(tagDictionary, "editorAlias", isRequired: true, defaultValue: "Umbraco.Textbox"),
                 Tab = GetPropertyValue(tagDictionary, "tab")
             };

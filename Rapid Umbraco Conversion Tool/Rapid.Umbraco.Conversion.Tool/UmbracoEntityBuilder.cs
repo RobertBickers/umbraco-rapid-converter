@@ -29,6 +29,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         public virtual IContentType BuildDocumentType(List<IContentType> umbracoDocumentTypeList, RapidUmbracoConversionObject conversionObject)
         {
             IContentType documentType = new ContentType(-1);
+
             documentType.Name = conversionObject.Name;
             documentType.Alias = conversionObject.Name.FirstCharacterToLower() + "DocumentType";
 
@@ -73,7 +74,13 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                 DataTypeDefinition dataTypeDefintion = new DataTypeDefinition(property.Editor);
                 PropertyType propertyType = new PropertyType(dataTypeDefintion, property.Alias.FirstCharacterToLower());
 
-                Debug.WriteLine($"Added property: {property.Alias} ({property.Tab}) - {documentType.Name}");
+                propertyType.Name = propertyType.Name;
+                propertyType.Description = property.Description;
+
+
+
+                Debug.WriteLine($"Added property: {propertyType.Name} ({property.Tab})");
+
                 documentType.AddPropertyType(propertyType, tabName);
 
                 return true;

@@ -54,7 +54,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         {
             List<ITemplate> templateList = new List<ITemplate>();
 
-            foreach (var item in convertedMarkupAndDocumentTypes)
+            foreach (Tuple<RapidUmbracoConversionObject, IContentType> item in convertedMarkupAndDocumentTypes)
             {
                 RapidUmbracoConversionObject conversionObject = item.Item1;
                 IContentType contentType = item.Item2;
@@ -68,14 +68,55 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
 
                     Debug.WriteLine("Template created for Document Type. Id: " + template.Id);
 
-                    template.Content = template.Content;
-                    Debug.WriteLine("Content has been set, attempting conversion of content");
+                    string fileContents = conversionObject.FileContent;
 
-                    templateList.Add(template);
+
+                    int firstPositionIndex = 0,
+                        lastPositionIndex = 0;
+
+                    //Get all of the indexes for the position
+                    while (firstPositionIndex >= 0 && lastPositionIndex >= 0)
+                    {
+                        firstPositionIndex = fileContents.IndexOf("[[{", firstPositionIndex + 1);
+                        lastPositionIndex = fileContents.IndexOf("}]]", lastPositionIndex + 1);
+
+                        if (firstPositionIndex >= 0 && lastPositionIndex >= 0)
+                        {
+                            Debug.WriteLine($"Found tag at position: {firstPositionIndex} to {lastPositionIndex}");
+
+                            string tag = fileContents.Substring(firstPositionIndex, (lastPositionIndex - firstPositionIndex + 3));
+                            Debug.WriteLine($"Tag: {tag}");
+
+                            UmbracoConversionProperty property = new UmbracoFileContentParser().ExtractTagIntoProperties(tag);
+
+                            if (!String.IsNullOrWhiteSpace(property.Editor))
+                            {
+                                //Switch on the property type
+                                fileContents = fileContents.Replace(tag, $"@Umbraco.Field(\"{property.Alias}\")");
+                                Debug.WriteLine("Replaced text at:" + firstPositionIndex + " (" + contentType.Name + ")");
+
+                            }
+                        }
+                    }
+
+                    //Add umbraco header to template
+                    template.Content += Environment.NewLine;
+                    template.Content += Environment.NewLine;
+                    template.Content += fileContents;
+
+                    //Save the template to initialise the ID
+                    Debug.WriteLine($"Saving template: {template.Name}");
+                    _serviceContext.FileService.SaveTemplate(template);
+
+                    //Set the default template on the paired content type
+                    Debug.WriteLine($"Setting DocumentType {contentType.Name}'s DefaultTemplate");
+                    contentType.SetDefaultTemplate(template);
+                    _serviceContext.ContentTypeService.Save(contentType);
+
+
                 }
             }
 
-            _serviceContext.FileService.SaveTemplate(templateList);
         }
 
 
