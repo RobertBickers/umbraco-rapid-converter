@@ -21,6 +21,7 @@ Use the following notation to define Document Types within Markup:
 
 Use property notation within your markup to define
 
+* label (name)
 * alias
 * tab
 * editor
@@ -41,10 +42,10 @@ Example:
         <div class="row header">
             <div class="col-md-12">
                 <h2>
-                    [[{alias="header" tab="features" editorAlias="Umbraco.Textbox" }]]
+                    [[{alias="header" tab="features" editorAlias="Umbraco.Textbox" label="Header" }]]
                 </h2>
                 <p>
-                    [[{alias="strapline" tab="features" editorAlias="Umbraco.NoEdit" }]]
+                    [[{alias="strapline" tab="features" editorAlias="Umbraco.NoEdit" label="Strap line" }]]
                 </p>
             </div>
         </div>
