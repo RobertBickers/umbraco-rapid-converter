@@ -1,5 +1,19 @@
 # Rapid Umbraco Conversion Tool
-.NET Library that facilitates a notation based conversion into Umbraco Document Types and Templates
+.NET Library that facilitates a notation based conversion from simple markup into Umbraco DocumentTypes and Templates
+
+---
+#### What is it for?
+
+The Rapid Umbraco Conversion tool lets you quickly import designer.html files into Umbraco by using some simple notation within the html.
+
+It is ideal for converting templates such as those purchased at [Wrapbootstrap.com](https://wrapbootstrap.com/ "Wrapbootstrap") into Umbraco Websites.
+
+Simply replace the text in these templates with a suitable tag, and run the Converter against your modified files to see them get created in no time.  
+
+
+
+---
+
 
 Use the following notation to define Document Types within Markup: 
 
