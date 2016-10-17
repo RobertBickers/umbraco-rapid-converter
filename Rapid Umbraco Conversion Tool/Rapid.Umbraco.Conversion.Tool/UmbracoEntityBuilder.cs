@@ -74,7 +74,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                 DataTypeDefinition dataTypeDefintion = new DataTypeDefinition(property.Editor);
                 PropertyType propertyType = new PropertyType(dataTypeDefintion, property.Alias.FirstCharacterToLower());
 
-                propertyType.Name = propertyType.Name;
+                propertyType.Name = property.Label;
                 propertyType.Description = property.Description;
 
 

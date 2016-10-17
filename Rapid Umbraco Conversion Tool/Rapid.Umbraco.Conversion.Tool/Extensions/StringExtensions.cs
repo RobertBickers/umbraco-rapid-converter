@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Codetreehouse.RapidUmbracoConverter.Tools.Extensions
@@ -33,6 +34,22 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools.Extensions
 
             var subString = @this.Substring(startIndex, endIndex - startIndex);
             return subString;
+        }
+
+
+        public static string FromCamelToWord(this string @this)
+        {
+            @this.FirstCharacterToUpper();
+
+            return Regex.Replace(@this, "(\\B[A-Z])", " $1");
+        }
+
+
+        public static string FirstCharacterToUpper(this string input)
+        {
+            if (String.IsNullOrEmpty(input))
+                throw new ArgumentException("Name has not been set on the UmbracoConversionObject");
+            return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
 

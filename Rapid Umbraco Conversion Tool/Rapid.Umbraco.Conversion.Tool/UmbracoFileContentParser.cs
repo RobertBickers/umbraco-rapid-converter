@@ -109,14 +109,17 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                 .Where(x => x.Length == 2)
                 .ToDictionary(x => x.First().RemoveSpecialCharacters(), x => x.Last().RemoveSpecialCharacters());
 
-            return new UmbracoConversionProperty()
+            var conversionProperty = new UmbracoConversionProperty()
             {
                 Alias = GetPropertyValue(tagDictionary, "alias", isRequired: true),
-                Label = GetPropertyValue(tagDictionary, "label", isRequired: true, defaultValue: GetPropertyValue(tagDictionary, "alias", isRequired: true)),
+                Label = GetPropertyValue(tagDictionary, "label", isRequired: true, defaultValue: GetPropertyValue(tagDictionary, "alias", isRequired: true).FromCamelToWord()),
                 Description = GetPropertyValue(tagDictionary, "description", isRequired: false),
                 Editor = GetPropertyValue(tagDictionary, "editorAlias", isRequired: true, defaultValue: "Umbraco.Textbox"),
                 Tab = GetPropertyValue(tagDictionary, "tab")
             };
+
+
+            return conversionProperty;
         }
 
 
