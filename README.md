@@ -38,6 +38,8 @@ Example:
 </div>
 ```
 
+***
+
 ### Generating the Umbraco DocumentTypes
 To consume the method within your application, simply instantiate the ```RapidUmbracoConverter``` class passing in the Services available within an ```UmbracoSurfaceController``` and call: 
 
