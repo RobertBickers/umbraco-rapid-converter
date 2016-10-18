@@ -63,18 +63,16 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                     template.Content += fileContents;
 
 
-                    ////Replace any of the copied asset directories
-                    //foreach (FileCopyPair copyPair in assetDirectories)
-                    //{
-                    //    //Replace any root based source paths with relative 
-                    //    template.Content = template.Content.Replace(copyPair.Source.Replace("~/", ""), copyPair.Destination);
+                    //Replace any of the copied asset directories
+                    foreach (FileCopyPair copyPair in assetDirectories)
+                    {
+                        string replaceString = $"href=\"{copyPair.MarkupReference}";
+                        template.Content = template.Content.Replace(replaceString, $"href=\"{copyPair.Destination}");
 
-                    //    //template.Content = template.Content.Replace(copyPair.Source.Replace("/", ""), "~/");
-
-
-                    //    //Do the final copy with all paths that are server relative
-                    //    template.Content = template.Content.Replace(copyPair.Source, copyPair.Destination);
-                    //}
+                        replaceString = $"src=\"{copyPair.MarkupReference}";
+                        template.Content = template.Content.Replace(replaceString, $"src=\"{copyPair.Destination}");
+                    }
+                    
 
                     //Save the template to initialise the ID
                     Debug.WriteLine($"Saving template: {template.Name}");
