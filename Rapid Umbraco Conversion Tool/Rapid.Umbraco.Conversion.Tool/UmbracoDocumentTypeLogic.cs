@@ -10,13 +10,52 @@ using Umbraco.Core.Services;
 
 namespace Codetreehouse.RapidUmbracoConverter.Tools
 {
-    public class UmbracoEntityBuilder
+    public class UmbracoDocumentTypeLogic
     {
+        FileContentParser _fileReader;
+
         ServiceContext _serviceContext;
 
-        public UmbracoEntityBuilder(ServiceContext serviceContext)
+        public UmbracoDocumentTypeLogic(ServiceContext serviceContext)
         {
             _serviceContext = serviceContext;
+            _fileReader = new FileContentParser();
+        }
+
+
+        internal void Delete(bool removeOnlyConverted)
+        {
+            var contentTypes = _serviceContext.ContentTypeService.GetAllContentTypes();
+            foreach (var contentType in contentTypes.Where(c => (!removeOnlyConverted) || (c.AdditionalData.ContainsKey("IsFromUmbracoTemplateConverter") && (((bool)c.AdditionalData["IsFromUmbracoTemplateConverter"]) == true))))
+            {
+                Debug.WriteLine("Deleting Document Types: " + contentType.Name);
+                _serviceContext.ContentTypeService.Delete(contentType);
+            }
+        }
+        
+        internal IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> ConvertMarkupToDocumentTypes(string templateDirectory, string[] allowedExtensions)
+        {
+            List<Tuple<RapidUmbracoConversionObject, IContentType>> pairedCollection = new List<Tuple<RapidUmbracoConversionObject, IContentType>>();
+
+            List<IContentType> umbracoContentTypeList = new List<IContentType>();
+
+            //Retrieve the conversion objects from the file system
+            foreach (var conversionObject in _fileReader.Convert(templateDirectory, allowedExtensions))
+            {
+                Debug.WriteLine("Building Document Type from file:" + conversionObject.Name);
+
+                IContentType umbracoContentType = this.BuildDocumentType(umbracoContentTypeList, conversionObject);
+
+                //Add the content tpye to the list
+                umbracoContentTypeList.Add(umbracoContentType);
+
+                //Add the Conversion object, and the generated content type
+                pairedCollection.Add(new Tuple<RapidUmbracoConversionObject, IContentType>(conversionObject, umbracoContentType));
+            }
+
+            _serviceContext.ContentTypeService.Save(umbracoContentTypeList);
+
+            return pairedCollection;
         }
 
 
@@ -47,8 +86,8 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             {
                 string tabName = property.Tab.Trim();
 
-                AddTabName(documentType, tabName);
-                AddPropertyToContentType(documentType, property, tabName, dataTypeDefinitionCollection);
+                this.AddTabToDocumentType(documentType, tabName);
+                this.AddPropertyToDocumentType(documentType, property, tabName, dataTypeDefinitionCollection);
             }
             Debug.Unindent();
 
@@ -64,7 +103,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         /// <param name="tabName"></param>
         /// <param name="registeredDataTypes"></param>
         /// <returns></returns>
-        public virtual bool AddPropertyToContentType(IContentType documentType, UmbracoConversionProperty property, string tabName, IEnumerable<IDataTypeDefinition> registeredDataTypes)
+        public virtual bool AddPropertyToDocumentType(IContentType documentType, UmbracoConversionProperty property, string tabName, IEnumerable<IDataTypeDefinition> registeredDataTypes)
         {
             if (property.Editor == "Umbraco.RichEdit")
                 property.Editor = "Umbraco.TinyMCEv3";
@@ -76,8 +115,6 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
 
                 propertyType.Name = property.Label;
                 propertyType.Description = property.Description;
-
-
 
                 Debug.WriteLine($"Added property: {propertyType.Name} ({property.Tab})");
 
@@ -122,13 +159,14 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             if (isDuplicate)
                 documentType.Alias += "_" + Guid.NewGuid().ToString();
         }
+                
 
         /// <summary>
         /// Adds a new tab to the Document Type
         /// </summary>
         /// <param name="documentType"></param>
         /// <param name="tabName"></param>
-        private void AddTabName(IContentType documentType, string tabName)
+        private void AddTabToDocumentType(IContentType documentType, string tabName)
         {
             //Add the property group as it doesn't already exist
             if (documentType.PropertyGroups.SingleOrDefault(x => x.Name == tabName) == null)

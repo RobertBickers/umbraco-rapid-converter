@@ -8,15 +8,15 @@ using System.Linq;
 
 namespace Codetreehouse.RapidUmbracoConverter.Tools
 {
-    public class UmbracoFileContentParser
+    public class FileContentParser
     {
         /// <summary>
-        /// Gets the files from the defined template file path, and converts them to UmbracoConversionObjects 
+        /// Gets the files from the defined template file path, and converts them to UmbracoConversionObjects
         /// </summary>
         /// <param name="templateDirectory">The directory that contains the template files</param>
         /// <param name="allowedExtensions">The extensions that will be used within the directory</param>
         /// <returns></returns>
-        public IEnumerable<RapidUmbracoConversionObject> GetUmbracoConversionObjects(string templateDirectory, string[] allowedExtensions)
+        public IEnumerable<RapidUmbracoConversionObject> Convert(string templateDirectory, string[] allowedExtensions)
         {
             if (String.IsNullOrWhiteSpace(templateDirectory))
                 throw new ArgumentNullException("templateDirectory", "Cannot find the files if a file location is not supplied");
@@ -24,29 +24,31 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             if (allowedExtensions.Count() <= 0)
                 throw new ArgumentException("Accepted extensions were not provided");
 
-            List<RapidUmbracoConversionObject> umbracoConversionObjects = GetFileContents(templateDirectory, allowedExtensions);
+            //Extract the files into the basic Rapid Umbraco Conversion Object
+            List<RapidUmbracoConversionObject> umbracoConversionObjects = ConvertWithoutProperties(templateDirectory, allowedExtensions);
 
             foreach (var conversionObject in umbracoConversionObjects)
             {
                 string fileContents = conversionObject.FileContent;
 
-                int firstPositionIndex = 0,
-                    lastPositionIndex = 0;
+                int startOfTagIndex = 0,
+                    endOfTagIndex = 0;
 
                 //Get all of the indexes for the position
-                while (firstPositionIndex >= 0 && lastPositionIndex >= 0)
+                while (startOfTagIndex >= 0 && endOfTagIndex >= 0)
                 {
-                    firstPositionIndex = fileContents.IndexOf("[[", firstPositionIndex + 1);
-                    lastPositionIndex = fileContents.IndexOf("]]", lastPositionIndex + 1);
+                    startOfTagIndex = fileContents.IndexOf(ApplicationKeys.BeginningTag, startOfTagIndex + 1);
+                    endOfTagIndex = fileContents.IndexOf(ApplicationKeys.EndingTag, endOfTagIndex + 1);
 
-                    if (firstPositionIndex >= 0 && lastPositionIndex >= 0)
+                    if (startOfTagIndex >= 0 && endOfTagIndex >= 0)
                     {
-                        Debug.WriteLine($"Found tag at position: {firstPositionIndex} to {lastPositionIndex}");
+                        Debug.WriteLine($"Found tag at position: {startOfTagIndex} to {endOfTagIndex}");
 
-                        string tag = fileContents.Substring(firstPositionIndex, (lastPositionIndex - firstPositionIndex + 2));
+                        string tag = fileContents.Substring(startOfTagIndex, (endOfTagIndex - startOfTagIndex + ApplicationKeys.EndingTag.Length));
                         Debug.WriteLine($"Tag: {tag}");
-
-                        conversionObject.PropertyCollection.Add(ExtractTagIntoProperties(tag));
+                        
+                        UmbracoConversionProperty convertedProperty = ConvertMarkupTagToUmbracoConversionProperty(tag);
+                        conversionObject.PropertyCollection.Add(convertedProperty);
                     }
                 }
             }
@@ -64,7 +66,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         /// <param name="templateDirectory"></param>
         /// <param name="allowedExtensions"></param>
         /// <returns></returns>
-        public List<RapidUmbracoConversionObject> GetFileContents(string templateDirectory, string[] allowedExtensions)
+        public List<RapidUmbracoConversionObject> ConvertWithoutProperties(string templateDirectory, string[] allowedExtensions)
         {
             if (!Directory.Exists(templateDirectory))
                 throw new ArgumentException("The defined file location does not exist. Location: " + templateDirectory);
@@ -101,7 +103,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public UmbracoConversionProperty ExtractTagIntoProperties(string tag)
+        public UmbracoConversionProperty ConvertMarkupTagToUmbracoConversionProperty(string tag)
         {
             //Split the values from the tag into a dictionary that can then be used to set the properties
             Dictionary<string, string> tagDictionary = tag.Split(' ')
@@ -109,7 +111,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                 .Where(x => x.Length == 2)
                 .ToDictionary(x => x.First().RemoveSpecialCharacters(), x => x.Last().RemoveSpecialCharacters());
 
-            var conversionProperty = new UmbracoConversionProperty()
+            var conversionProperty = new UmbracoConversionProperty(tag)
             {
                 Alias = GetPropertyValue(tagDictionary, "alias", isRequired: true),
                 Label = GetPropertyValue(tagDictionary, "label", isRequired: true, defaultValue: GetPropertyValue(tagDictionary, "alias", isRequired: true).FromCamelToWord()),
@@ -117,7 +119,6 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                 Editor = GetPropertyValue(tagDictionary, "editorAlias", isRequired: true, defaultValue: "Umbraco.Textbox"),
                 Tab = GetPropertyValue(tagDictionary, "tab")
             };
-
 
             return conversionProperty;
         }
