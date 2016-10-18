@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,16 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools.Entities
 {
     public class FileCopyPair
     {
-        public FileCopyPair(string directoryRoot, string source, string destination)
+        public FileCopyPair(string directoryRoot, string source, string markupReference, string destination)
         {
             DirectoryRoot = directoryRoot;
             Source = source;
+            MarkupReference = markupReference;
+
             Destination = destination;
+
+            CombinedSource = CombinePathsForCopy(directoryRoot, source);
+            CombinedDestination = CombinePathsForCopy(directoryRoot, destination);
         }
 
         public string Destination { get; internal set; }
@@ -20,22 +26,35 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools.Entities
         public string Source { get; internal set; }
 
 
-        public string CombinedSource
+        public string CombinedSource { get; private set; }
+        public string CombinedDestination { get; private set; }
+        public string MarkupReference { get; private set; }
+
+        public string CombinePathsForCopy(string directoryRoot, string specific)
         {
-            get
+            string[] pathArray = directoryRoot.Replace("~", "").Split(new String[] { "\\" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] specificRoot = specific.Replace("~", "").Split(new String[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
+
+            string combinedPath = String.Empty;
+
+            foreach (var item in pathArray)
             {
-                return (DirectoryRoot += Source).Replace("/~/", "/").Replace("/", "\\").Replace("\\~", "\\");
+                Debug.WriteLine(combinedPath);
+                combinedPath += item;
+                combinedPath += "/";
             }
+
+            foreach (var item in specificRoot)
+            {
+                Debug.WriteLine(combinedPath);
+                combinedPath += item;
+                combinedPath += "/";
+            }
+            Debug.WriteLine(combinedPath);
+
+            return combinedPath;
         }
 
-        public string CombinedDestination
-        {
-            get
-            {
-                return (DirectoryRoot += Destination).Replace("/~/", "/").Replace("/", "\\").Replace("\\~", "\\");
-
-            }
-        }
 
     }
 }
