@@ -252,7 +252,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirectoryCopier.cs" />
     <Compile Include="Entities\ApplicationKeys.cs" />
+    <Compile Include="Entities\FileCopyPair.cs" />
     <Compile Include="Entities\RapidUmbracoConverterResponse.cs" />
     <Compile Include="Exceptions\PropertyParseException.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

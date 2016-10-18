@@ -44,9 +44,9 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         /// Takes the pair collection of RapidUmbracoConverionObject and the correpsonding Document Type to create and attatch the appropriate Template
         /// </summary>
         /// <param name="convertedMarkupAndDocumentTypes"></param>
-        public void ConvertTemplates(IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> convertedMarkupAndDocumentTypes)
+        public void ConvertTemplates(IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> convertedMarkupAndDocumentTypes, params FileCopyPair[] assetDirectories)
         {
-            _templateLogic.Convert(convertedMarkupAndDocumentTypes);
+            _templateLogic.Convert(convertedMarkupAndDocumentTypes, assetDirectories);
         }
 
         /// <summary>

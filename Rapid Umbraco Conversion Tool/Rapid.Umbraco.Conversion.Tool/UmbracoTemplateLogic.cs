@@ -4,6 +4,7 @@ using Codetreehouse.RapidUmbracoConverter.Tools.Entities;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 using System.Diagnostics;
+using System.IO;
 
 namespace Codetreehouse.RapidUmbracoConverter.Tools
 {
@@ -25,9 +26,17 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             }
         }
 
-        internal void Convert(IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> convertedMarkupAndDocumentTypes)
+
+        internal void Convert(IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> convertedMarkupAndDocumentTypes, FileCopyPair[] assetDirectories)
         {
             List<ITemplate> templateList = new List<ITemplate>();
+
+            //Copy all of the files from the defined asset directories
+            foreach (FileCopyPair directory in assetDirectories)
+            {
+                DirectoryCopier.Copy(directory.CombinedSource, directory.CombinedDestination);
+            }
+
 
             foreach (Tuple<RapidUmbracoConversionObject, IContentType> item in convertedMarkupAndDocumentTypes)
             {
@@ -52,6 +61,20 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                     template.Content += Environment.NewLine;
                     template.Content += Environment.NewLine;
                     template.Content += fileContents;
+
+
+                    ////Replace any of the copied asset directories
+                    //foreach (FileCopyPair copyPair in assetDirectories)
+                    //{
+                    //    //Replace any root based source paths with relative 
+                    //    template.Content = template.Content.Replace(copyPair.Source.Replace("~/", ""), copyPair.Destination);
+
+                    //    //template.Content = template.Content.Replace(copyPair.Source.Replace("/", ""), "~/");
+
+
+                    //    //Do the final copy with all paths that are server relative
+                    //    template.Content = template.Content.Replace(copyPair.Source, copyPair.Destination);
+                    //}
 
                     //Save the template to initialise the ID
                     Debug.WriteLine($"Saving template: {template.Name}");
