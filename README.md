@@ -4,11 +4,11 @@
 ---
 #### What is it for?
 
-The Rapid Umbraco Conversion tool lets you quickly import designer.html files into Umbraco by using some simple notation within the html.
+The Rapid Umbraco Conversion tool lets you quickly import .html files into Umbraco by using some simple notation within the html to define document types and templates within your Umbraco Instance.
 
-It is ideal for converting templates such as those purchased at [Wrapbootstrap.com](https://wrapbootstrap.com/ "Wrapbootstrap") into Umbraco Websites.
+Rapid Umbraco Conversion Tools is ideal for converting templates such as those purchased at [Wrapbootstrap.com](https://wrapbootstrap.com/ "Wrapbootstrap") into Umbraco with the appropriate properties and tempaltes already defined
 
-Simply replace the text in these templates with a suitable tag, and run the Converter against your modified files to see them get created in no time.  
+Simply replace the content of the templates to include some simple notation and the conversion tool will take car of the rest.  
 
 
 
