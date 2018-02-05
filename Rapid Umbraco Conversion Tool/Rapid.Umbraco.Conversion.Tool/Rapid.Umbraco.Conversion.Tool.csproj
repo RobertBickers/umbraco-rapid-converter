@@ -252,24 +252,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DirectoryCopier.cs" />
-    <Compile Include="Entities\ApplicationKeys.cs" />
+    <Compile Include="App Logic\Directory Copier\DirectoryCopier.cs" />
+    <Compile Include="App Logic\Document Type\UmbracoServiceExtender.cs" />
+    <Compile Include="App Logic\Template\IRapidUmbracoTemplateHandler.cs" />
     <Compile Include="Entities\FileCopyPair.cs" />
     <Compile Include="Entities\RapidUmbracoConverterResponse.cs" />
+    <Compile Include="Entities\RapidUmbracoConverterSetupException.cs" />
+    <Compile Include="Entities\RapidUmbracoSettings.cs" />
     <Compile Include="Exceptions\PropertyParseException.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Entities\UmbracoConversionObject.cs" />
     <Compile Include="Entities\UmbracoConversionProperty.cs" />
-    <Compile Include="UmbracoDocumentTypeLogic.cs" />
-    <Compile Include="FileContentParser.cs" />
-    <Compile Include="RapidUmbracoConverter.cs" />
+    <Compile Include="App Logic\Document Type\IRapidUmbracoDocumentTypeHandler.cs" />
+    <Compile Include="App Logic\Document Type\UmbracoDocumentTypeLogic.cs" />
+    <Compile Include="App Logic\Parser\FileContentParser.cs" />
+    <Compile Include="App Logic\Public\RapidUmbracoConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UmbracoTemplateLogic.cs" />
+    <Compile Include="App Logic\Template\UmbracoTemplateLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

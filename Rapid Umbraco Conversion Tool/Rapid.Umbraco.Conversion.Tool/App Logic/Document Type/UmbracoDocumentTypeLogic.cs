@@ -10,30 +10,30 @@ using Umbraco.Core.Services;
 
 namespace Codetreehouse.RapidUmbracoConverter.Tools
 {
-    public class UmbracoDocumentTypeLogic
+
+    public class UmbracoDocumentTypeLogic : UmbracoServiceExtender, IRapidUmbracoDocumentTypeHandler
     {
         FileContentParser _fileReader;
 
-        ServiceContext _serviceContext;
-
         public UmbracoDocumentTypeLogic(ServiceContext serviceContext)
         {
-            _serviceContext = serviceContext;
+            UmbracoServiceContext = serviceContext;
+
             _fileReader = new FileContentParser();
         }
 
 
-        internal void Delete(bool removeOnlyConverted)
+        public void RemoveAllDocumentTypes(bool removeOnlyConverted)
         {
-            var contentTypes = _serviceContext.ContentTypeService.GetAllContentTypes();
-            foreach (var contentType in contentTypes.Where(c => (!removeOnlyConverted) || (c.AdditionalData.ContainsKey("IsFromUmbracoTemplateConverter") && (((bool)c.AdditionalData["IsFromUmbracoTemplateConverter"]) == true))))
+            var contentTypes = UmbracoServiceContext.ContentTypeService.GetAllContentTypes();
+            foreach (var contentType in contentTypes.Where(c => (!removeOnlyConverted) || (c.AdditionalData.ContainsKey(RapidUmbracoSettings.RapidUmbracoConverterUseKey) && (((bool)c.AdditionalData[RapidUmbracoSettings.RapidUmbracoConverterUseKey]) == true))))
             {
                 Debug.WriteLine("Deleting Document Types: " + contentType.Name);
-                _serviceContext.ContentTypeService.Delete(contentType);
+                UmbracoServiceContext.ContentTypeService.Delete(contentType);
             }
         }
-        
-        internal IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> ConvertMarkupToDocumentTypes(string templateDirectory, string[] allowedExtensions)
+
+        public IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> ConvertMarkupToDocumentTypes(string templateDirectory, string[] allowedExtensions)
         {
             List<Tuple<RapidUmbracoConversionObject, IContentType>> pairedCollection = new List<Tuple<RapidUmbracoConversionObject, IContentType>>();
 
@@ -44,7 +44,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             {
                 Debug.WriteLine("Building Document Type from file:" + conversionObject.Name);
 
-                IContentType umbracoContentType = this.BuildDocumentType(umbracoContentTypeList, conversionObject);
+                IContentType umbracoContentType = CreateDocumentType(umbracoContentTypeList, conversionObject);
 
                 //Add the content tpye to the list
                 umbracoContentTypeList.Add(umbracoContentType);
@@ -53,7 +53,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                 pairedCollection.Add(new Tuple<RapidUmbracoConversionObject, IContentType>(conversionObject, umbracoContentType));
             }
 
-            _serviceContext.ContentTypeService.Save(umbracoContentTypeList);
+            UmbracoServiceContext.ContentTypeService.Save(umbracoContentTypeList);
 
             return pairedCollection;
         }
@@ -65,21 +65,21 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         /// <param name="umbracoDocumentTypeList"></param>
         /// <param name="conversionObject"></param>
         /// <returns></returns>
-        public virtual IContentType BuildDocumentType(List<IContentType> umbracoDocumentTypeList, RapidUmbracoConversionObject conversionObject)
+        public virtual IContentType CreateDocumentType(List<IContentType> umbracoDocumentTypeList, RapidUmbracoConversionObject conversionObject)
         {
             IContentType documentType = new ContentType(-1);
 
             documentType.Name = conversionObject.Name;
             documentType.Alias = conversionObject.Name.FirstCharacterToLower() + "DocumentType";
 
-            documentType.AdditionalData.Add("IsFromUmbracoTemplateConverter", true);
-            documentType.AdditionalData.Add("UmbracoTemplateConverterDate", DateTime.Now);
-            documentType.AdditionalData.Add("UmbracoTemplateConverterOriginalFilepath", conversionObject.FilePath);
+            documentType.AdditionalData.Add(RapidUmbracoSettings.RapidUmbracoConverterUseKey, true);
+            documentType.AdditionalData.Add(RapidUmbracoSettings.RapidUmbracoConverterDateConvertedKey, DateTime.Now);
+            documentType.AdditionalData.Add(RapidUmbracoSettings.RapidUmbracoConverterOriginalFilePathKey, conversionObject.FilePath);
 
             this.ValidateAlias(umbracoDocumentTypeList, documentType);
 
             //Add the properties to the content type
-            IEnumerable<IDataTypeDefinition> dataTypeDefinitionCollection = _serviceContext.DataTypeService.GetAllDataTypeDefinitions();
+            IEnumerable<IDataTypeDefinition> dataTypeDefinitionCollection = UmbracoServiceContext.DataTypeService.GetAllDataTypeDefinitions();
 
             Debug.Indent();
             foreach (var property in conversionObject.PropertyCollection)
@@ -159,7 +159,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             if (isDuplicate)
                 documentType.Alias += "_" + Guid.NewGuid().ToString();
         }
-                
+
 
         /// <summary>
         /// Adds a new tab to the Document Type
@@ -175,6 +175,11 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                 documentType.AddPropertyGroup(tabName);
             }
         }
+
+
+
+
+
 
 
 

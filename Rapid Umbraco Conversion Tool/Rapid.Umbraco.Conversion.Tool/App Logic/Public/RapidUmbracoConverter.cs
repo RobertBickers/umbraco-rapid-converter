@@ -12,12 +12,12 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
     {
         ServiceContext _serviceContext = null;
 
-        UmbracoDocumentTypeLogic _documentTypeLogic;
+        IRapidUmbracoDocumentTypeHandler _documentTypeLogic;
         UmbracoTemplateLogic _templateLogic;
 
         public RapidUmbracoConverter(ServiceContext services)
         {
-            _serviceContext = services;
+            _serviceContext = services ?? throw new RapidUmbracoConverterSetupException();
 
             _documentTypeLogic = new UmbracoDocumentTypeLogic(services);
             _templateLogic = new UmbracoTemplateLogic(services);
@@ -29,7 +29,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         /// <param name="removeOnlyConverted"></param>
         public void DeleteAllDocumentTypes(bool removeOnlyConverted = true)
         {
-            _documentTypeLogic.Delete(removeOnlyConverted);
+            _documentTypeLogic.RemoveAllDocumentTypes(removeOnlyConverted);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         /// </summary>
         public void DeleteAllTemplates()
         {
-            _templateLogic.Delete();        
+            _templateLogic.Delete();
         }
 
         /// <summary>

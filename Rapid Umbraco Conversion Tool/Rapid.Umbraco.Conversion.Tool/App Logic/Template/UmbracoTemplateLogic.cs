@@ -8,26 +8,29 @@ using System.IO;
 
 namespace Codetreehouse.RapidUmbracoConverter.Tools
 {
-    internal class UmbracoTemplateLogic
+
+
+    internal class UmbracoTemplateLogic : UmbracoServiceExtender, IRapidUmbracoTemplateHandler
     {
-        private ServiceContext _serviceContext;
+
+        private ServiceContext ServiceContext { get; set; }
 
         internal UmbracoTemplateLogic(ServiceContext services)
         {
-            this._serviceContext = services;
+            ServiceContext = services;
         }
 
-        internal void Delete()
+        public void Delete()
         {
-            var templates = _serviceContext.FileService.GetTemplates();
+            var templates = ServiceContext.FileService.GetTemplates();
             foreach (var item in templates)
             {
-                _serviceContext.FileService.DeleteTemplate(item.Alias);
+                ServiceContext.FileService.DeleteTemplate(item.Alias);
             }
         }
 
 
-        internal void Convert(IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> convertedMarkupAndDocumentTypes, FileCopyPair[] assetDirectories)
+        public void Convert(IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> convertedMarkupAndDocumentTypes, FileCopyPair[] assetDirectories)
         {
             List<ITemplate> templateList = new List<ITemplate>();
 
@@ -46,7 +49,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                 Debug.WriteLine("Conversion Object:" + item.Item1.Name);
 
                 //Create the strongly type template
-                var attempt = _serviceContext.FileService.CreateTemplateForContentType(documentType.Alias, documentType.Name);
+                var attempt = ServiceContext.FileService.CreateTemplateForContentType(documentType.Alias, documentType.Name);
 
                 if (attempt.Success)
                 {
@@ -72,16 +75,16 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                         replaceString = $"src=\"{copyPair.MarkupReference}";
                         template.Content = template.Content.Replace(replaceString, $"src=\"{copyPair.Destination}");
                     }
-                    
+
 
                     //Save the template to initialise the ID
                     Debug.WriteLine($"Saving template: {template.Name}");
-                    _serviceContext.FileService.SaveTemplate(template);
+                    ServiceContext.FileService.SaveTemplate(template);
 
                     //Set the default template on the paired content type
                     Debug.WriteLine($"Setting DocumentType {documentType.Name}'s DefaultTemplate");
                     documentType.SetDefaultTemplate(template);
-                    _serviceContext.ContentTypeService.Save(documentType);
+                    ServiceContext.ContentTypeService.Save(documentType);
 
                 }
             }

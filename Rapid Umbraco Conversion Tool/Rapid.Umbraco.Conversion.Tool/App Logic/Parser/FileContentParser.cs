@@ -37,16 +37,16 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                 //Get all of the indexes for the position
                 while (startOfTagIndex >= 0 && endOfTagIndex >= 0)
                 {
-                    startOfTagIndex = fileContents.IndexOf(ApplicationKeys.BeginningTag, startOfTagIndex + 1);
-                    endOfTagIndex = fileContents.IndexOf(ApplicationKeys.EndingTag, endOfTagIndex + 1);
+                    startOfTagIndex = fileContents.IndexOf(RapidUmbracoSettings.TagStart, startOfTagIndex + 1);
+                    endOfTagIndex = fileContents.IndexOf(RapidUmbracoSettings.TagEnd, endOfTagIndex + 1);
 
                     if (startOfTagIndex >= 0 && endOfTagIndex >= 0)
                     {
                         Debug.WriteLine($"Found tag at position: {startOfTagIndex} to {endOfTagIndex}");
 
-                        string tag = fileContents.Substring(startOfTagIndex, (endOfTagIndex - startOfTagIndex + ApplicationKeys.EndingTag.Length));
+                        string tag = fileContents.Substring(startOfTagIndex, (endOfTagIndex - startOfTagIndex + RapidUmbracoSettings.TagEnd.Length));
                         Debug.WriteLine($"Tag: {tag}");
-                        
+
                         UmbracoConversionProperty convertedProperty = ConvertMarkupTagToUmbracoConversionProperty(tag);
                         conversionObject.PropertyCollection.Add(convertedProperty);
                     }
