@@ -252,23 +252,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App Logic\Directory Copier\DirectoryCopier.cs" />
-    <Compile Include="App Logic\Document Type\UmbracoServiceExtender.cs" />
-    <Compile Include="App Logic\Template\IRapidUmbracoTemplateHandler.cs" />
-    <Compile Include="Entities\FileCopyPair.cs" />
-    <Compile Include="Entities\RapidUmbracoConverterResponse.cs" />
-    <Compile Include="Entities\RapidUmbracoConverterSetupException.cs" />
-    <Compile Include="Entities\RapidUmbracoSettings.cs" />
-    <Compile Include="Exceptions\PropertyParseException.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Entities\UmbracoConversionObject.cs" />
-    <Compile Include="Entities\UmbracoConversionProperty.cs" />
-    <Compile Include="App Logic\Document Type\IRapidUmbracoDocumentTypeHandler.cs" />
-    <Compile Include="App Logic\Document Type\UmbracoDocumentTypeLogic.cs" />
-    <Compile Include="App Logic\Parser\FileContentParser.cs" />
-    <Compile Include="App Logic\Public\RapidUmbracoConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="App Logic\Template\UmbracoTemplateLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

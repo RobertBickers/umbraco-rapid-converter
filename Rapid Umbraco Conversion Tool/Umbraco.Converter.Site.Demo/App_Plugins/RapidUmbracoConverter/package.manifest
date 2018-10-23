@@ -1,0 +1,10 @@
+{
+    "javascript":[
+        /*javascript files listed here*/
+		"~/app_plugins/RapidUmbracoConverter/scripts/RapidUmbracoConverterDashboard.controller.js"
+    ],
+    "css": [
+        /*list of stylesheets appear here:*/
+        "~/app_plugins/RapidUmbracoConverter/css/styles.css"
+    ]
+}
