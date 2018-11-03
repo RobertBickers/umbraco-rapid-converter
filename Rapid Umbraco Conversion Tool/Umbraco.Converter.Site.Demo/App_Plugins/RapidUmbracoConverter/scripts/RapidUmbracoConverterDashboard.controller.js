@@ -7,12 +7,21 @@
         vm.UserName = user.name;
     });
 
+
+
     vm.BeginConvert = function () {
 
+        var response = umbRequestHelper.resourcePromise(
+            $http.get("/umbraco/backoffice/RapidUmbracoConverter/ConverterApi/BeginConvert"),
+            "Failed to retrieve all Person data").then(function (data) {
+                vm.Response = data;
+                alert(data);
+                console.log(data);
+            });
 
-        return umbRequestHelper.resourcePromise(
-            $http.get("backoffice/RapidUmbracoConverter/ConversionController/BeginConvert"),
-            "Failed to retrieve all Person data");
+
+
+        return response;
     }
 
 

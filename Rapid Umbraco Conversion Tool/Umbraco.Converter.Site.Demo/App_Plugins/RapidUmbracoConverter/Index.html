@@ -8,8 +8,13 @@
     <p>You can put anything here...</p>
 
     <div>
-        <a class="btn btn-primary btn-large" href="/umbraco/#/content/content/edit/1075?doctype=Home&create=true"><i class="icon-edit"></i>Create New Blog Post</a>
         <input type="button" value="Display Value" ng-click="vm.BeginConvert()" />
+
+        <p>
+            {{ vm.Response }}
+        </p>
+
+        <input ng-model="vm.TemplatePath" type="text" value="~/" />
 
 
 

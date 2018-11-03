@@ -8,14 +8,14 @@ using Umbraco.Core.Services;
 
 namespace Codetreehouse.RapidUmbracoConverter.Tools
 {
-    public class RapidUmbracoConverter
+    public class RapidUmbracoConverterTool
     {
         ServiceContext _serviceContext = null;
 
         IRapidUmbracoDocumentTypeHandler _documentTypeLogic;
         UmbracoTemplateLogic _templateLogic;
 
-        public RapidUmbracoConverter(ServiceContext services)
+        public RapidUmbracoConverterTool(ServiceContext services)
         {
             _serviceContext = services ?? throw new RapidUmbracoConverterSetupException();
 
