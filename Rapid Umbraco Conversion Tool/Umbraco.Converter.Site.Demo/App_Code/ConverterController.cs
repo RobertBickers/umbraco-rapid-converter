@@ -1,5 +1,7 @@
 ﻿
 using Codetreehouse.RapidUmbracoConverter.Tools;
+using Codetreehouse.RapidUmbracoConverter.Tools.Entities;
+using System.Collections.Generic;
 using System.Web.Http;
 using Umbraco.Web.Editors;
 using Umbraco.Web.WebApi;
@@ -22,6 +24,11 @@ namespace RapidUmbracoConverter.Controllers
 
             //Create the templates
             rapidConverter.DeleteAllTemplates();
+
+            List<FileCopyPair> copyPair = new List<FileCopyPair>();
+
+            copyPair.Add(new FileCopyPair(directoryRoot, source, markupReference, destination));
+
             rapidConverter.ConvertTemplates(generatedPairDocumentTypes);
 
 
