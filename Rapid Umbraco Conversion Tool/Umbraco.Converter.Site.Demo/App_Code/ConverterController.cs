@@ -2,11 +2,12 @@
 using Codetreehouse.RapidUmbracoConverter.Tools;
 using System.Web.Http;
 using Umbraco.Web.Editors;
+using Umbraco.Web.WebApi;
 
 namespace RapidUmbracoConverter.Controllers
 {
     [Umbraco.Web.Mvc.PluginController("RapidUmbracoConverter")]
-    public class ConverterApiController : UmbracoAuthorizedJsonController
+    public class ConverterController : UmbracoAuthorizedApiController
     {
         // we will add a method here later
         [HttpGet]

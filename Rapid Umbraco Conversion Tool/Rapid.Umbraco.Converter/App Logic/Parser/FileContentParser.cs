@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Web;
 
 namespace Codetreehouse.RapidUmbracoConverter.Tools
 {
@@ -68,6 +69,10 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
         /// <returns></returns>
         public List<RapidUmbracoConversionObject> ConvertWithoutProperties(string templateDirectory, string[] allowedExtensions)
         {
+
+            if (templateDirectory.StartsWith("~/"))
+                templateDirectory = HttpContext.Current.Server.MapPath(templateDirectory);
+
             if (!Directory.Exists(templateDirectory))
                 throw new ArgumentException("The defined file location does not exist. Location: " + templateDirectory);
 
