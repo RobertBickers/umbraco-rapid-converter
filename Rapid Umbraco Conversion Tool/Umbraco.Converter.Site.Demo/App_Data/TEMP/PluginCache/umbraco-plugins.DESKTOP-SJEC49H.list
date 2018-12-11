@@ -278,7 +278,7 @@ Umbraco.ModelsBuilder.Validation.MediaTypeModelValidator, Umbraco.ModelsBuilder,
 Umbraco.ModelsBuilder.Validation.MemberTypeModelValidator, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Umbraco.ModelsBuilderApplication, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Umbraco.ModelsBuilderBackOfficeController, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
-RapidUmbracoConverter.Controllers.ConverterController, App_Code.-cvrhwiy, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+RapidUmbracoConverter.Controllers.ConverterController, App_Code.yraqawqk, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 umbraco.MacroEngines.RazorMacroEngine, umbraco.MacroEngines, Version=1.0.6837.12345, Culture=neutral, PublicKeyToken=null
 Umbraco.Core.Strategies.RelateOnCopyHandler, Umbraco.Core, Version=1.0.6837.12334, Culture=neutral, PublicKeyToken=null
 Umbraco.Core.Strategies.RelateOnTrashHandler, Umbraco.Core, Version=1.0.6837.12334, Culture=neutral, PublicKeyToken=null
@@ -673,63 +673,7 @@ Umbraco.Web.Editors.MediaTypeController, umbraco, Version=1.0.6837.12341, Cultur
 Umbraco.Web.Editors.SectionController, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Editors.MediaController, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Umbraco.ModelsBuilderBackOfficeController, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
-RapidUmbracoConverter.Controllers.ConverterController, App_Code.-cvrhwiy, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-
-Umbraco.Core.PropertyEditors.IParameterEditor
-
-Umbraco.Web.PropertyEditors.DropdownFlexiblePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ContentPicker2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.DecimalPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MediaPicker2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MemberPicker2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MultiNodeTreePicker2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.NestedContentPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.RelatedLinks2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.GridPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.EmailAddressPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ImageCropperPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ListViewPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MacroContainerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MarkdownPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MemberGroupPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MemberPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MultiNodeTreePickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MultipleMediaPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.RelatedLinksPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.CheckBoxListPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ColorPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.DatePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.DateTimePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.DropDownMultiplePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.FolderBrowserPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.IntegerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MediaPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.MultipleTextStringPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.DropDownMultipleWithKeysPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.RadioButtonsPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.SliderPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.TagsPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.UserPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.DropDownPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.DropDownWithKeysPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.LabelPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ContentPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.FileUploadPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.RichTextPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.TextAreaPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.TextboxPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.TrueFalsePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ParameterEditors.MultipleContentPickerParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ParameterEditors.ContentTypeParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ParameterEditors.MultipleContentTypeParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ParameterEditors.MultipleMediaPickerParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ParameterEditors.MultiplePropertyGroupParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ParameterEditors.MultiplePropertyTypeParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ParameterEditors.PropertyGroupParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ParameterEditors.PropertyTypeParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Web.PropertyEditors.ParameterEditors.SingleMediaPickerParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
-Umbraco.Core.PropertyEditors.ParameterEditor, Umbraco.Core, Version=1.0.6837.12334, Culture=neutral, PublicKeyToken=null
-Umbraco.Core.PropertyEditors.PropertyEditor, Umbraco.Core, Version=1.0.6837.12334, Culture=neutral, PublicKeyToken=null
+RapidUmbracoConverter.Controllers.ConverterController, App_Code.yraqawqk, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 
 Umbraco.Web.Trees.TreeController
 Umbraco.Web.Trees.TreeAttribute
@@ -790,6 +734,62 @@ umbraco.BusinessLogic.Actions.ActionUpdate, cms, Version=1.0.6837.12339, Culture
 umbraco.BusinessLogic.Actions.ContextMenuSeperator, cms, Version=1.0.6837.12339, Culture=neutral, PublicKeyToken=null
 umbraco.BusinessLogic.Actions.ActionUnPublish, cms, Version=1.0.6837.12339, Culture=neutral, PublicKeyToken=null
 umbraco.BusinessLogic.Actions.ActionRestore, cms, Version=1.0.6837.12339, Culture=neutral, PublicKeyToken=null
+
+Umbraco.Core.PropertyEditors.IParameterEditor
+
+Umbraco.Web.PropertyEditors.DropdownFlexiblePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ContentPicker2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.DecimalPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MediaPicker2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MemberPicker2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MultiNodeTreePicker2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.NestedContentPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.RelatedLinks2PropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.GridPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.EmailAddressPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ImageCropperPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ListViewPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MacroContainerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MarkdownPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MemberGroupPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MemberPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MultiNodeTreePickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MultipleMediaPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.RelatedLinksPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.CheckBoxListPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ColorPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.DatePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.DateTimePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.DropDownMultiplePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.FolderBrowserPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.IntegerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MediaPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.MultipleTextStringPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.DropDownMultipleWithKeysPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.RadioButtonsPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.SliderPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.TagsPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.UserPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.DropDownPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.DropDownWithKeysPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.LabelPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ContentPickerPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.FileUploadPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.RichTextPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.TextAreaPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.TextboxPropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.TrueFalsePropertyEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ParameterEditors.MultipleContentPickerParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ParameterEditors.ContentTypeParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ParameterEditors.MultipleContentTypeParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ParameterEditors.MultipleMediaPickerParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ParameterEditors.MultiplePropertyGroupParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ParameterEditors.MultiplePropertyTypeParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ParameterEditors.PropertyGroupParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ParameterEditors.PropertyTypeParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PropertyEditors.ParameterEditors.SingleMediaPickerParameterEditor, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
+Umbraco.Core.PropertyEditors.ParameterEditor, Umbraco.Core, Version=1.0.6837.12334, Culture=neutral, PublicKeyToken=null
+Umbraco.Core.PropertyEditors.PropertyEditor, Umbraco.Core, Version=1.0.6837.12334, Culture=neutral, PublicKeyToken=null
 
 umbraco.interfaces.ITree
 

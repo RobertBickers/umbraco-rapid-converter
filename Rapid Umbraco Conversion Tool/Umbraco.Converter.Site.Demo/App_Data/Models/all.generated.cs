@@ -8,7 +8,7 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "4ce32713a8a754b1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "cbdcdf5cd0a6c811")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
@@ -769,15 +769,15 @@ namespace Umbraco.Web.PublishedContentModels
 	}
 
 	/// <summary>demo</summary>
-	[PublishedContentModel("demoDocumentType_6a190d3092ce4c099c2d04a1f6bc7d64")]
-	public partial class DemoDocumentType_6a190d3092ce4c099c2d04a1f6bc7d64 : PublishedContentModel
+	[PublishedContentModel("demoDocumentType_589e58dcC1224b2fAe4d728e66f8c185")]
+	public partial class DemoDocumentType_589e58dcC1224b2fAe4d728e66f8c185 : PublishedContentModel
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "demoDocumentType_6a190d3092ce4c099c2d04a1f6bc7d64";
+		public new const string ModelTypeAlias = "demoDocumentType_589e58dcC1224b2fAe4d728e66f8c185";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public DemoDocumentType_6a190d3092ce4c099c2d04a1f6bc7d64(IPublishedContent content)
+		public DemoDocumentType_589e58dcC1224b2fAe4d728e66f8c185(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -788,22 +788,22 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<DemoDocumentType_6a190d3092ce4c099c2d04a1f6bc7d64, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<DemoDocumentType_589e58dcC1224b2fAe4d728e66f8c185, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
 	}
 
 	/// <summary>demo</summary>
-	[PublishedContentModel("demoDocumentType_b37c797b6fc349a39997A95d16dc18dd")]
-	public partial class DemoDocumentType_b37c797b6fc349a39997A95d16dc18dd : PublishedContentModel
+	[PublishedContentModel("demoDocumentType_f5e110d5Eeac48919bc18611d58b17f2")]
+	public partial class DemoDocumentType_f5e110d5Eeac48919bc18611d58b17f2 : PublishedContentModel
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "demoDocumentType_b37c797b6fc349a39997A95d16dc18dd";
+		public new const string ModelTypeAlias = "demoDocumentType_f5e110d5Eeac48919bc18611d58b17f2";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public DemoDocumentType_b37c797b6fc349a39997A95d16dc18dd(IPublishedContent content)
+		public DemoDocumentType_f5e110d5Eeac48919bc18611d58b17f2(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -814,7 +814,7 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<DemoDocumentType_b37c797b6fc349a39997A95d16dc18dd, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<DemoDocumentType_f5e110d5Eeac48919bc18611d58b17f2, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}

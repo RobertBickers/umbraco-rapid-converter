@@ -2,6 +2,10 @@
     var vm = this;
 
     vm.TemplatePath = "~/react-demo";
+    vm.UserName = "";
+    vm.Response = "";
+    vm.GeneratedDocumentTypes = [];
+    vm.GeneratedDocumentTypeNumber = 0;
 
     userService.getCurrentUser().then(function (user) {
         console.log(user);
@@ -22,7 +26,11 @@
             umbRequestHelper.resourcePromise(
                 $http.get("/umbraco/backoffice/RapidUmbracoConverter/Converter/BeginConvert?templateDirectory=" + vm.TemplatePath),
                 "Failed to retrieve all Person data").then(function (data) {
-                    vm.Response = data;
+                    vm.Response = data.Message;
+                    vm.GeneratedDocumentTypes = data.ContentTypes;
+                    vm.GeneratedDocumentTypeNumber = data.ContentTypes.length;
+
+
                 });
         }
     }

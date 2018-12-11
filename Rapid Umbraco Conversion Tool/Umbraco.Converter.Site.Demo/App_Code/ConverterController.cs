@@ -1,10 +1,13 @@
 ﻿
 using Codetreehouse.RapidUmbracoConverter.Tools;
 using Codetreehouse.RapidUmbracoConverter.Tools.Entities;
+using Rapid.Umbraco.Converter.Entities.Web;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Results;
 using Umbraco.Web.Editors;
 using Umbraco.Web.WebApi;
 
@@ -15,9 +18,8 @@ namespace RapidUmbracoConverter.Controllers
     {
         // we will add a method here later
         [HttpGet]
-        public string BeginConvert(string templateDirectory)
+        public GenerationCompletionObject BeginConvert(string templateDirectory)
         {
-
             RapidUmbracoConverterTool rapidConverter = new RapidUmbracoConverterTool(Services);
 
             //Create the document types
@@ -57,15 +59,9 @@ namespace RapidUmbracoConverter.Controllers
             rapidConverter.ConvertTemplates(generatedPairDocumentTypes, copyPair.ToArray());
 
 
-            StringBuilder sb = new StringBuilder();
-            foreach (var item in generatedPairDocumentTypes)
-            {
-                sb.AppendLine("Alias: " + item.Item2.Alias);
-            }
 
-            string responseMessage = "Action completed. Generated document types:\n\n" + sb.ToString();
+            return new GenerationCompletionObject(true, "Action complete", generatedPairDocumentTypes.Select(x => x.Item2).ToList());
 
-            return responseMessage;
 
 
 
