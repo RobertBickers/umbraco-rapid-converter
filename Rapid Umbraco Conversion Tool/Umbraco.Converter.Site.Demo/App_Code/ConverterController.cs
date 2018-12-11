@@ -2,6 +2,8 @@
 using Codetreehouse.RapidUmbracoConverter.Tools;
 using Codetreehouse.RapidUmbracoConverter.Tools.Entities;
 using System.Collections.Generic;
+using System.Text;
+using System.Web;
 using System.Web.Http;
 using Umbraco.Web.Editors;
 using Umbraco.Web.WebApi;
@@ -19,20 +21,52 @@ namespace RapidUmbracoConverter.Controllers
             RapidUmbracoConverterTool rapidConverter = new RapidUmbracoConverterTool(Services);
 
             //Create the document types
-            rapidConverter.DeleteAllDocumentTypes(removeOnlyConverted: true);
+            rapidConverter.DeleteAllDocumentTypes(removeOnlyConverted: false);
             var generatedPairDocumentTypes = rapidConverter.ConvertDocumentTypes(templateDirectory, ".html");
 
             //Create the templates
             rapidConverter.DeleteAllTemplates();
 
-            List<FileCopyPair> copyPair = new List<FileCopyPair>();
+            List<FileCopyPair> copyPair = new List<FileCopyPair>()
+            {
+                //Images
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/icons", "icons", "/Content/icons"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/icons/brankic", "icons/brankic", "/Content/brankic"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/icons/entypo", "icons/entypo", "/Content/entypo"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/icons/icomoon", "icons/icomoon", "/Content/icomoon"),
 
-            copyPair.Add(new FileCopyPair(directoryRoot, source, markupReference, destination));
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/images", "images", "/Content/Images"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/images/bgs", "images/bgs", "/Content/Images/bgs"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/images/circle-icons", "images/circle-icons", "/Content/Images/circle-icons"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/images/logos", "images/logos", "/Content/Images/logos"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/images/slider", "images/slider", "/Content/Images/slider"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/images/social", "images/social", "/Content/Images/social"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/images/tabs", "images/tabs", "/Content/Images/tabs"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/images/testimonials", "images/testimonials", "/Content/Images/testimonials"),
 
-            rapidConverter.ConvertTemplates(generatedPairDocumentTypes);
+
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/css/compiled", "css/compiled", "/Content/css/compiled"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/css/vendor", "css/vendor", "/Content/css/vendor"),
+
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/js", "js/", "/Content/js/"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/js/bootstrap", "js/boostrap", "/Content/js/bootstrap"),
+                new FileCopyPair(HttpContext.Current.Server.MapPath("~/"), "/react-demo/js/vendor", "js/vendor", "/Content/js/vendor"),
+
+            };
+
+            rapidConverter.ConvertTemplates(generatedPairDocumentTypes, copyPair.ToArray());
 
 
-            return "Complete";
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in generatedPairDocumentTypes)
+            {
+                sb.AppendLine("Alias: " + item.Item2.Alias);
+            }
+
+            string responseMessage = "Action completed. Generated document types:\n\n" + sb.ToString();
+
+            return responseMessage;
+
 
 
         }

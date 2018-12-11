@@ -9,6 +9,14 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools.Entities
 {
     public class FileCopyPair
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="directoryRoot"></param>
+        /// <param name="source"></param>
+        /// <param name="markupReference">The string that will be used in the replace statement as shown in the markup</param>
+        /// <param name="destination"></param>
         public FileCopyPair(string directoryRoot, string source, string markupReference, string destination)
         {
             DirectoryRoot = directoryRoot;

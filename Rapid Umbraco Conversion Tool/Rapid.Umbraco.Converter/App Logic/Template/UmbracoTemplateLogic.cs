@@ -69,11 +69,22 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
                     //Replace any of the copied asset directories
                     foreach (FileCopyPair copyPair in assetDirectories)
                     {
+                        //Href with doublee quote
                         string replaceString = $"href=\"{copyPair.MarkupReference}";
                         template.Content = template.Content.Replace(replaceString, $"href=\"{copyPair.Destination}");
-
+                        
+                        //Src with double quote
                         replaceString = $"src=\"{copyPair.MarkupReference}";
                         template.Content = template.Content.Replace(replaceString, $"src=\"{copyPair.Destination}");
+
+                        //Background image tag with single quote
+                        replaceString = $"background-image:url('{copyPair.MarkupReference}";
+                        template.Content = template.Content.Replace(replaceString, $"background-image:url('{copyPair.Destination}");
+
+                        //Background image tag with double quote
+                        replaceString = $"background-image:url(\"{copyPair.MarkupReference}";
+                        template.Content = template.Content.Replace(replaceString, $"background-image:url(\"{copyPair.Destination}");
+                        
                     }
 
 

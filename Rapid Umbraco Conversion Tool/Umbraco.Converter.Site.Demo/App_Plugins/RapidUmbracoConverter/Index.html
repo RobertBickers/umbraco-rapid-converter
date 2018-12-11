@@ -4,11 +4,10 @@
     <h1>Hey, {{ vm.UserName }}. </h1>
 
     <h1>Welcome to the Rapid Umbraco Converter</h1>
-    <p>We hope you find the experience of editing your content with Umbraco enjoyable and delightful. If you discover any problems with the site please report them to the support team at <a href="mailto:">support@popularumbracopartner.com</a></p>
-    <p>You can put anything here...</p>
+    <p>Enter the path of the template below and click the button to get started.</p>
 
     <div>
-        <input type="button" value="Display Value" ng-click="vm.BeginConvert()" />
+        <input type="button" value="Click to get started" class="btn btn-default" ng-click="vm.BeginConvert()" />
 
         <p>
             {{ vm.Response }}
