@@ -278,7 +278,7 @@ Umbraco.ModelsBuilder.Validation.MediaTypeModelValidator, Umbraco.ModelsBuilder,
 Umbraco.ModelsBuilder.Validation.MemberTypeModelValidator, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Umbraco.ModelsBuilderApplication, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Umbraco.ModelsBuilderBackOfficeController, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
-RapidUmbracoConverter.Controllers.ConverterController, App_Code.yraqawqk, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+RapidUmbracoConverter.Controllers.ConverterController, App_Code.jnjzfwad, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 umbraco.MacroEngines.RazorMacroEngine, umbraco.MacroEngines, Version=1.0.6837.12345, Culture=neutral, PublicKeyToken=null
 Umbraco.Core.Strategies.RelateOnCopyHandler, Umbraco.Core, Version=1.0.6837.12334, Culture=neutral, PublicKeyToken=null
 Umbraco.Core.Strategies.RelateOnTrashHandler, Umbraco.Core, Version=1.0.6837.12334, Culture=neutral, PublicKeyToken=null
@@ -673,7 +673,7 @@ Umbraco.Web.Editors.MediaTypeController, umbraco, Version=1.0.6837.12341, Cultur
 Umbraco.Web.Editors.SectionController, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Editors.MediaController, umbraco, Version=1.0.6837.12341, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Umbraco.ModelsBuilderBackOfficeController, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
-RapidUmbracoConverter.Controllers.ConverterController, App_Code.yraqawqk, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+RapidUmbracoConverter.Controllers.ConverterController, App_Code.jnjzfwad, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 
 Umbraco.Web.Trees.TreeController
 Umbraco.Web.Trees.TreeAttribute

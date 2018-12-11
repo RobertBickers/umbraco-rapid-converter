@@ -24,7 +24,7 @@ namespace RapidUmbracoConverter.Controllers
 
             //Create the document types
             rapidConverter.DeleteAllDocumentTypes(removeOnlyConverted: false);
-            var generatedPairDocumentTypes = rapidConverter.ConvertDocumentTypes(templateDirectory, ".html");
+            IEnumerable<System.Tuple<RapidUmbracoConversionObject, Umbraco.Core.Models.IContentType>> generatedPairDocumentTypes = rapidConverter.ConvertDocumentTypes(templateDirectory, ".html");
 
             //Create the templates
             rapidConverter.DeleteAllTemplates();
@@ -59,8 +59,9 @@ namespace RapidUmbracoConverter.Controllers
             rapidConverter.ConvertTemplates(generatedPairDocumentTypes, copyPair.ToArray());
 
 
+            List<RapidUmbracoConversionObject> convertedItems = generatedPairDocumentTypes.Select(x => x.Item1).ToList();
 
-            return new GenerationCompletionObject(true, "Action complete", generatedPairDocumentTypes.Select(x => x.Item2).ToList());
+            return new GenerationCompletionObject(true, "Action complete", convertedItems);
 
 
 

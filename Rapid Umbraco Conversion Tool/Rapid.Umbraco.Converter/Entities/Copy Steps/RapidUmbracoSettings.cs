@@ -12,7 +12,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools.Entities
         public const string RapidUmbracoConverterDateConvertedKey = "UmbracoTemplateConverterDate";
         public const string RapidUmbracoConverterOriginalFilePathKey = "UmbracoTemplateConverterOriginalFilepath";
         public const string TagStart = "[[{";
-        public const string TagEnd = "}}]";
+        public const string TagEnd = "}]]";
     }
 
 

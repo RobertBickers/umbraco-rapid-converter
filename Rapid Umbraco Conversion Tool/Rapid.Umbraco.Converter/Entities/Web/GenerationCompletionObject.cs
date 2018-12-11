@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Codetreehouse.RapidUmbracoConverter.Tools.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Rapid.Umbraco.Converter.Entities.Web
 {
     public class GenerationCompletionObject
     {
-        public GenerationCompletionObject(bool isComplete, string message, List<IContentType> contentTypes)
+        public GenerationCompletionObject(bool isComplete, string message, List<RapidUmbracoConversionObject> contentTypes)
         {
             IsComplete = isComplete;
             Message = message;
@@ -20,7 +21,7 @@ namespace Rapid.Umbraco.Converter.Entities.Web
 
         public string Message { get; set; }
 
-        public List<IContentType> ContentTypes { get; set; }
+        public List<RapidUmbracoConversionObject> ContentTypes { get; set; }
 
 
     }

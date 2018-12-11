@@ -1,28 +1,50 @@
 ﻿<div class="welcome-dashboard" ng-controller="RapidUmbracoConverterDashboardController as vm">
 
-
-    <h1>Hey, {{ vm.UserName }}. </h1>
-
-    <h1>Welcome to the Rapid Umbraco Converter</h1>
-    <p>Enter the path of the template below and click the button to get started.</p>
-
-    <div>
-        <input type="button" value="Click to get started" class="btn btn-default" ng-click="vm.BeginConvert()" />
-
-        <p>
-            {{ vm.Response }}
-        </p>
-
-        <input ng-model="vm.TemplatePath" type="text" value="~/" id="templatePath" />
-        
-        <div ng-repeat="response in vm.GeneratedDocumentTypes">
-            <h4>
-                {{response.Alias}}
-            </h4>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <h1>Hey, {{ vm.UserName }}. </h1>
+                <h1>Welcome to the Rapid Umbraco Converter</h1>
+                <p>Enter the path of the template below and click the button to get started.</p>
+            </div>
         </div>
 
+        <div class="row-fluid" ng-show="vm.Response.length > 0">
+            <div class="span12">
+                <div class="alert alert-block">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ vm.Response }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span4">
+                <div class="well">
+                    <input ng-model="vm.TemplatePath" type="text" value="~/" id="templatePath" />
+
+                    <div class="progress progress-striped active">
+                        <div class="bar" style="width: 90%;"></div>
+                    </div>
+
+                    <input type="button" value="Click to get started" class="btn btn-default" ng-click="vm.BeginConvert()" />
 
 
-
+                </div>
+            </div>
+            <div class="span8">
+                <div ng-repeat="response in vm.GeneratedDocumentTypes">
+                    <h4>
+                        {{response.Name}}
+                    </h4>
+                    <p>
+                        {{response.FileName}}
+                    </p>
+                    <p>
+                        Found Properties: {{response.PropertyCollection.length}}
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

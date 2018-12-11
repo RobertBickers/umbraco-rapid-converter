@@ -19,7 +19,7 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "cbdcdf5cd0a6c811")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "753b8b71a05b1117")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 namespace Umbraco.Web.PublishedContentModels
@@ -47,6 +47,24 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<AltDocumentType, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Heading
+		///</summary>
+		[ImplementPropertyType("mainHeading")]
+		public string MainHeading
+		{
+			get { return this.GetPropertyValue<string>("mainHeading"); }
+		}
+
+		///<summary>
+		/// Subheading
+		///</summary>
+		[ImplementPropertyType("subheading")]
+		public string Subheading
+		{
+			get { return this.GetPropertyValue<string>("subheading"); }
 		}
 	}
 
@@ -385,6 +403,33 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<IndexDocumentType, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Heading
+		///</summary>
+		[ImplementPropertyType("heroHeading")]
+		public string HeroHeading
+		{
+			get { return this.GetPropertyValue<string>("heroHeading"); }
+		}
+
+		///<summary>
+		/// Quote
+		///</summary>
+		[ImplementPropertyType("mainQuote")]
+		public string MainQuote
+		{
+			get { return this.GetPropertyValue<string>("mainQuote"); }
+		}
+
+		///<summary>
+		/// Subheading
+		///</summary>
+		[ImplementPropertyType("mainQuoteDetails")]
+		public string MainQuoteDetails
+		{
+			get { return this.GetPropertyValue<string>("mainQuoteDetails"); }
 		}
 	}
 
@@ -753,15 +798,15 @@ namespace Umbraco.Web.PublishedContentModels
 	}
 
 	/// <summary>demo</summary>
-	[PublishedContentModel("demoDocumentType_589e58dcC1224b2fAe4d728e66f8c185")]
-	public partial class DemoDocumentType_589e58dcC1224b2fAe4d728e66f8c185 : PublishedContentModel
+	[PublishedContentModel("demoDocumentType_858df4a08dbf4445Bd565e6828b1e57e")]
+	public partial class DemoDocumentType_858df4a08dbf4445Bd565e6828b1e57e : PublishedContentModel
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "demoDocumentType_589e58dcC1224b2fAe4d728e66f8c185";
+		public new const string ModelTypeAlias = "demoDocumentType_858df4a08dbf4445Bd565e6828b1e57e";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public DemoDocumentType_589e58dcC1224b2fAe4d728e66f8c185(IPublishedContent content)
+		public DemoDocumentType_858df4a08dbf4445Bd565e6828b1e57e(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -772,22 +817,22 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<DemoDocumentType_589e58dcC1224b2fAe4d728e66f8c185, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<DemoDocumentType_858df4a08dbf4445Bd565e6828b1e57e, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
 	}
 
 	/// <summary>demo</summary>
-	[PublishedContentModel("demoDocumentType_f5e110d5Eeac48919bc18611d58b17f2")]
-	public partial class DemoDocumentType_f5e110d5Eeac48919bc18611d58b17f2 : PublishedContentModel
+	[PublishedContentModel("demoDocumentType_2ed4f41208c8455b9d38175f96d80c98")]
+	public partial class DemoDocumentType_2ed4f41208c8455b9d38175f96d80c98 : PublishedContentModel
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "demoDocumentType_f5e110d5Eeac48919bc18611d58b17f2";
+		public new const string ModelTypeAlias = "demoDocumentType_2ed4f41208c8455b9d38175f96d80c98";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public DemoDocumentType_f5e110d5Eeac48919bc18611d58b17f2(IPublishedContent content)
+		public DemoDocumentType_2ed4f41208c8455b9d38175f96d80c98(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -798,7 +843,7 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<DemoDocumentType_f5e110d5Eeac48919bc18611d58b17f2, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<DemoDocumentType_2ed4f41208c8455b9d38175f96d80c98, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
