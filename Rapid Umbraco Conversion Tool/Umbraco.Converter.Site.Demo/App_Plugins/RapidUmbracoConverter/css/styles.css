@@ -1,4 +1,18 @@
-﻿.welcome-dashboard h1{
-    color:#232323;
-    font-size:1.3em;
+﻿.ruc-main h1 {
+    color: #232323;
+    font-size: 1.3em;
+}
+
+.ruc-main .wide-input {
+    width: 100%;
+}
+
+ruc-main .row{
+    padding-left:-10px;
+    padding-right:-10px;
+}
+
+.ruc-main .row > div {
+    padding-left: 20px;
+    padding-right: 20px;
 }

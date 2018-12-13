@@ -7,6 +7,26 @@
     vm.GeneratedDocumentTypes = [];
     vm.GeneratedDocumentTypeNumber = 0;
 
+    vm.FileCopyPairCollection = [];
+
+    vm.NewFileCopyPairSource = {
+        VirtualPath: "",
+        Source: "",
+        MarkupReference: "",
+        DestinationFolder: ""
+    };
+
+    vm.AddNewFileCopyPair = function () {
+        vm.FileCopyPairCollection.push(JSON.parse(JSON.stringify(vm.NewFileCopyPairSource)));
+
+        vm.NewFileCopyPairSource.VirtualPath = "";
+        vm.NewFileCopyPairSource.Source = "";
+        vm.NewFileCopyPairSource.MarkupReference = "";
+        vm.NewFileCopyPairSource.DestinationFolder = "";
+
+    };
+
+
     userService.getCurrentUser().then(function (user) {
         console.log(user);
         vm.UserName = user.name;
