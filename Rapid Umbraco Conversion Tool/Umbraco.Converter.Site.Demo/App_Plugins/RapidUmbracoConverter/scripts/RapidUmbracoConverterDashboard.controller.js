@@ -16,13 +16,29 @@
         DestinationFolder: ""
     };
 
+
+    vm.FocusValue = function (fileItem) {
+        vm.NewFileCopyPairSource.VirtualPath = fileItem.VirtualPath
+        vm.NewFileCopyPairSource.Source = fileItem.Source;
+        vm.NewFileCopyPairSource.MarkupReference = fileItem.MarkupReference;
+        vm.NewFileCopyPairSource.DestinationFolder = fileItem.DestinationFolder;
+        ;
+    };
+
+    vm.RemoveItem = function (fileItem) {
+        vm.FileCopyPairCollection.splice(vm.FileCopyPairCollection.indexOf(fileItem), 1);
+    };
+
     vm.AddNewFileCopyPair = function () {
         vm.FileCopyPairCollection.push(JSON.parse(JSON.stringify(vm.NewFileCopyPairSource)));
 
-        vm.NewFileCopyPairSource.VirtualPath = "";
+        vm.NewFileCopyPairSource.VirtualPath;
         vm.NewFileCopyPairSource.Source = "";
         vm.NewFileCopyPairSource.MarkupReference = "";
         vm.NewFileCopyPairSource.DestinationFolder = "";
+
+        $("#newSource").focus();
+
 
     };
 
@@ -43,11 +59,9 @@
 
             vm.Response = "Conversion Started";
 
-
             var data = {};
-            data.templateDirectory = vm.TemplatePath;
+            data.TemplateDirectory = vm.TemplatePath;
             data.CopyPairCollection = vm.FileCopyPairCollection;
-
 
             $.ajax({
                 type: "POST",
@@ -65,16 +79,6 @@
             }, function () {
                 alert("There was an error");
             });
-
-
-            //umbRequestHelper.resourcePromise(
-            //    $http.get("/umbraco/backoffice/RapidUmbracoConverter/Converter/BeginConvert?templateDirectory=" + vm.TemplatePath),
-            //    "Failed to retrieve all Person data").then(function (data) {
-            //        vm.Response = data.Message;
-            //        vm.GeneratedDocumentTypes = data.ContentTypes;
-            //        vm.GeneratedDocumentTypeNumber = data.ContentTypes.length;
-            //    });
-
         }
     }
 });

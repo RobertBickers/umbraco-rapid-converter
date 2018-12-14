@@ -7,126 +7,173 @@
             </div>
         </div>
         <hr />
-        <div class="row">
-            <div class="span12">
 
-                <p>
-                    Enter the path for the template files
-                </p>
-                <p>
-                    <small>
-                        This is the single point of use for the template files. This should contain all of files for the template with the RapidUmbracoConverter notiation already in place
-                    </small>
-                </p>
 
-                <input ng-model="vm.TemplatePath" type="text" value="~/" id="templatePath" />
+        <div class="tabbable">
+            <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#sourceTemplateTab" data-toggle="tab">
+                        Template Directory
+                    </a>
+                </li>
+                <li>
+                    <a href="#assetCopier" data-toggle="tab">
+                        Asset Copier
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#conversionResults" data-toggle="tab">
+                        Results
+                    </a>
+                </li>
+
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="sourceTemplateTab">
+                    <div class="row">
+
+                        <div class="span12">
+                            <h4>
+                                Template Directory
+                            </h4>
+                            <p>
+                                This is the single point of use for the template files. This should contain all of files for the template with the RapidUmbracoConverter notiation already in place
+                            </p>
+                        </div>
+                        <hr />
+                        <div class="span12">
+                            <input ng-model="vm.TemplatePath" type="text" value="~/" id="templatePath" />
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="tab-pane" id="assetCopier">
+                    <div class="row">
+                        <div class="span12">
+                            <h4>
+                                Asset Coppier
+                            </h4>
+                            <p>
+                                Use this section to copy assets over from the template site into your own folder structure. This will also update the converted templates to point at the new asset directory
+                            </p>
+                        </div>
+                        <hr />
+                        <div class="span3">
+
+
+                            <div class="well">
+                                <form>
+                                    <div class="control-group">
+                                        <label class="control-label" for="newVirtualPath">Virtual Path</label>
+                                        <div class="controls">
+                                            <input type="text" class="wide-input" id="newVirtualPath" placeholder="Virtual Path" ng-model="vm.NewFileCopyPairSource.VirtualPath">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="newSource">Source</label>
+                                        <div class="controls">
+                                            <input type="text" class="wide-input" id="newSource" placeholder="Source" ng-model="vm.NewFileCopyPairSource.Source">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="newMarkupReference">Markup Reference</label>
+                                        <div class="controls">
+                                            <input type="text" class="wide-input" id="newMarkupReference" placeholder="Markup Reference" ng-model="vm.NewFileCopyPairSource.MarkupReference">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="newDestionationFolder">Destination Folder</label>
+                                        <div class="controls">
+                                            <input type="text" class="wide-input" id="newDestionationFolder" placeholder="Destionation Folder" ng-model="vm.NewFileCopyPairSource.DestinationFolder">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <button type="submit" class="btn btn-success" ng-click="vm.AddNewFileCopyPair()">Add Asset</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <div class="span9">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Virtual Path</th>
+                                        <th>Source</th>
+                                        <th>Markup Reference</th>
+                                        <th>Destination folder</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr ng-show="vm.FileCopyPairCollection.length == 0">
+                                        <td class="text-center">You haven't selected any assets</td>
+
+                                    </tr>
+
+                                    <tr ng-repeat="copyPair in vm.FileCopyPairCollection" ng-click="vm.FocusValue(copyPair)">
+                                        <td>{{copyPair.VirtualPath}}</td>
+                                        <td>{{copyPair.Source}}</td>
+                                        <td>{{copyPair.MarkupReference}}</td>
+                                        <td>{{copyPair.DestinationFolder}}</td>
+                                        <td>
+
+                                            <button ng-click="vm.RemoveItem(copyPair)" class="btn btn-danger">Delete</button>
+
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="conversionResults">
+                    <div class="row" ng-show="vm.Response.length > 0">
+                        <div class="span12">
+                            <div class="alert alert-block">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ vm.Response }}
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="span12">
+
+                            <div ng-repeat="response in vm.GeneratedDocumentTypes">
+                                <h4>
+                                    {{response.Name}}
+                                </h4>
+                                <p>
+                                    {{response.FileName}}
+                                </p>
+                                <p>
+                                    Found Properties: {{response.PropertyCollection.length}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <hr />
-
-
-        <div class="row">
-            <div class="span4">
-                <div class="well">
-                    <form>
-                        <div class="control-group">
-                            <label class="control-label" for="newVirtualPath">Virtual Path</label>
-                            <div class="controls">
-                                <input type="text" class="wide-input" id="newVirtualPath" placeholder="Virtual Path" ng-model="vm.NewFileCopyPairSource.VirtualPath">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="newSource">Source</label>
-                            <div class="controls">
-                                <input type="text" class="wide-input" id="newSource" placeholder="Source" ng-model="vm.NewFileCopyPairSource.Source">
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="newMarkupReference">Markup Reference</label>
-                            <div class="controls">
-                                <input type="text" class="wide-input" id="newMarkupReference" placeholder="Markup Reference" ng-model="vm.NewFileCopyPairSource.MarkupReference">
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="newDestionationFolder">Destination Folder</label>
-                            <div class="controls">
-                                <input type="text" class="wide-input" id="newDestionationFolder" placeholder="Destionation Folder" ng-model="vm.NewFileCopyPairSource.DestinationFolder">
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <div class="controls">
-                                <button type="submit" class="btn btn-success" ng-click="vm.AddNewFileCopyPair">Add Asset</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-            <div class="span8">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Virtual Path</th>
-                            <th>Source</th>
-                            <th>Markup Reference</th>
-                            <th>Destination folder</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr ng-show="vm.FileCopyPairCollection.length == 0">
-                            <td class="text-center">You haven't selected any assets</td>
-
-                        </tr>
-
-                        <tr ng-repeat="copyPair in vm.FileCopyPairCollection">
-                            <td>{{copyPair.VirtualPath}}</td>
-                            <td>{{copyPair.Source}}</td>
-                            <td>{{copyPair.MarkupReference}}</td>
-                            <td>{{copyPair.DestinationFolder}}</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
         <div class="row">
             <div class="span12">
-                <input type="button" value="Convert" class="btn btn-primary" ng-click="vm.BeginConvert()" />
+                <input type="button" value="Begin Conversion" class="btn btn-primary" ng-click="vm.BeginConvert()" />
             </div>
         </div>
     </div>
 
-    <div class="row" ng-show="vm.Response.length > 0">
-        <div class="span12">
-            <div class="alert alert-block">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ vm.Response }}
-            </div>
-        </div>
-    </div>
-    <hr />
-
-
-    <div class="row">
-        <div class="span12">
-
-            <div ng-repeat="response in vm.GeneratedDocumentTypes">
-                <h4>
-                    {{response.Name}}
-                </h4>
-                <p>
-                    {{response.FileName}}
-                </p>
-                <p>
-                    Found Properties: {{response.PropertyCollection.length}}
-                </p>
-            </div>
-        </div>
-    </div>
 </div>

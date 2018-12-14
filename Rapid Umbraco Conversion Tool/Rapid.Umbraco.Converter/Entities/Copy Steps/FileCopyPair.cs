@@ -10,6 +10,12 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools.Entities
     public class FileCopyPair
     {
 
+
+        public FileCopyPair()
+        {
+            Debug.WriteLine("File copy pair");
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -19,6 +25,8 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools.Entities
         /// <param name="destination"></param>
         public FileCopyPair(string directoryRoot, string source, string markupReference, string destination)
         {
+            Debug.WriteLine("File copy pair");
+
             DirectoryRoot = directoryRoot;
             Source = source;
             MarkupReference = markupReference;
@@ -29,14 +37,14 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools.Entities
             CombinedDestination = CombinePathsForCopy(directoryRoot, destination);
         }
 
-        public string Destination { get; internal set; }
-        public string DirectoryRoot { get; private set; }
-        public string Source { get; internal set; }
+        public string Destination { get; set; }
+        public string DirectoryRoot { get; set; }
+        public string Source { get; set; }
 
 
-        public string CombinedSource { get; private set; }
-        public string CombinedDestination { get; private set; }
-        public string MarkupReference { get; private set; }
+        public string CombinedSource { get; set; }
+        public string CombinedDestination { get; set; }
+        public string MarkupReference { get; set; }
 
         public string CombinePathsForCopy(string directoryRoot, string specific)
         {
