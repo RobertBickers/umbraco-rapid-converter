@@ -3,6 +3,8 @@ using Codetreehouse.RapidUmbracoConverter.Tools;
 using Codetreehouse.RapidUmbracoConverter.Tools.Entities;
 using Rapid.Umbraco.Converter.Entities.Web;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -13,14 +15,32 @@ using Umbraco.Web.WebApi;
 
 namespace RapidUmbracoConverter.Controllers
 {
+    public class ConversionPostObject
+    {
+
+        public ConversionPostObject(string templateDirectory, List<FileCopyPair> copyPairCollection)
+        {
+            TemplateDirectory = templateDirectory;
+            CopyPairCollection = copyPairCollection;
+        }
+
+        public string TemplateDirectory { get; set; }
+
+        public List<FileCopyPair> CopyPairCollection { get; set; }
+
+    }
+
+
     [Umbraco.Web.Mvc.PluginController("RapidUmbracoConverter")]
     public class ConverterController : UmbracoAuthorizedApiController
     {
         // we will add a method here later
-        [HttpGet]
-        public GenerationCompletionObject BeginConvert(string templateDirectory)
+        [HttpPost]
+        public GenerationCompletionObject BeginConvert([FromBody]ConversionPostObject postObject)
         {
             RapidUmbracoConverterTool rapidConverter = new RapidUmbracoConverterTool(Services);
+
+            string templateDirectory = postObject.TemplateDirectory;
 
             //Create the document types
             rapidConverter.DeleteAllDocumentTypes(removeOnlyConverted: false);
@@ -28,6 +48,9 @@ namespace RapidUmbracoConverter.Controllers
 
             //Create the templates
             rapidConverter.DeleteAllTemplates();
+
+            Debug.WriteLine(postObject.CopyPairCollection.Count);
+
 
             List<FileCopyPair> copyPair = new List<FileCopyPair>()
             {

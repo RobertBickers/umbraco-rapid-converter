@@ -43,15 +43,38 @@
 
             vm.Response = "Conversion Started";
 
-            umbRequestHelper.resourcePromise(
-                $http.get("/umbraco/backoffice/RapidUmbracoConverter/Converter/BeginConvert?templateDirectory=" + vm.TemplatePath),
-                "Failed to retrieve all Person data").then(function (data) {
-                    vm.Response = data.Message;
-                    vm.GeneratedDocumentTypes = data.ContentTypes;
-                    vm.GeneratedDocumentTypeNumber = data.ContentTypes.length;
+
+            var data = {};
+            data.templateDirectory = vm.TemplatePath;
+            data.CopyPairCollection = vm.FileCopyPairCollection;
 
 
-                });
+            $.ajax({
+                type: "POST",
+                url: "/umbraco/backoffice/RapidUmbracoConverter/Converter/BeginConvert",
+                contentType: "application/json; charsect=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data)
+            }).then(function () {
+                vm.Response = data.Message;
+                vm.GeneratedDocumentTypes = data.ContentTypes;
+                vm.GeneratedDocumentTypeNumber = data.ContentTypes.length;
+
+                alert("Post Complete");
+
+            }, function () {
+                alert("There was an error");
+            });
+
+
+            //umbRequestHelper.resourcePromise(
+            //    $http.get("/umbraco/backoffice/RapidUmbracoConverter/Converter/BeginConvert?templateDirectory=" + vm.TemplatePath),
+            //    "Failed to retrieve all Person data").then(function (data) {
+            //        vm.Response = data.Message;
+            //        vm.GeneratedDocumentTypes = data.ContentTypes;
+            //        vm.GeneratedDocumentTypeNumber = data.ContentTypes.length;
+            //    });
+
         }
     }
 });
