@@ -7,12 +7,14 @@
     width: 100%;
 }
 
-ruc-main .row{
-    padding-left:-10px;
-    padding-right:-10px;
+ruc-main .row {
+    padding-left: -10px;
+    padding-right: -10px;
 }
 
 .ruc-main .row > div {
     padding-left: 20px;
     padding-right: 20px;
 }
+
+

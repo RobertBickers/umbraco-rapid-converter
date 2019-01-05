@@ -7,7 +7,15 @@
     vm.GeneratedDocumentTypes = [];
     vm.GeneratedDocumentTypeNumber = 0;
 
-    vm.FileCopyPairCollection = [];
+    vm.FileCopyPairCollection = [
+        {
+            VirtualPath: "~/React/Stuff",
+            Source: "/Stuff",
+            MarkupReference: "/MFR",
+            DestinationFolder: "/STUFF"
+        },
+        {
+        }];
 
     vm.NewFileCopyPairSource = {
         VirtualPath: "",
