@@ -44,12 +44,18 @@
                                     <input type="text" class="wide-input" id="templateFileDirectory" placeholder="Directory of the template files" ng-model="vm.TemplatePath">
                                 </div>
                             </div>
-                            <input ng-model="vm.TemplatePath" type="text" value="~/" id="templatePath" />
+
+                            <button type="submit" class="btn btn-success" ng-click="vm.RefreshTemplatePath()">Refresh</button>
 
                             <hr />
                             <h4>
                                 Found files
                             </h4>
+
+                            <p ng-show="vm.FoundTemplateFiles.length == 0">
+                                The files below can be modified and utilised within the Rapid Umbraco Conversion Tool
+                            </p>
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -60,17 +66,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-show="vm.FileCopyPairCollection.length == 0">
-                                        <td class="text-center">Unable to reach that directory</td>
+                                    <tr ng-show="vm.FoundTemplateFiles.length == 0">
+                                        <td class="text-center">Click refresh to get the files </td>
                                     </tr>
-                                    <tr ng-repeat="copyPair in vm.FileCopyPairCollection" ng-click="vm.FocusValue(copyPair)">
-                                        <td>{{copyPair.VirtualPath}}</td>
-                                        <td>{{copyPair.Source}}</td>
-                                        <td>{{copyPair.MarkupReference}}</td>
+                                    <tr ng-repeat="templateFile in vm.FoundTemplateFiles" ng-click="vm.ViewTemplateFile(templateFile)">
+                                        <td>{{templateFile.FileName}}</td>
+                                        <td>{{templateFile.FileExtension}}</td>
                                         <td>
-                                            <button ng-click="vm.ViewContentPage(copyPair)" class="btn btn-shadow-info">View</button>
-                                            <button ng-click="vm.ViewContentPage(copyPair)" class="btn btn-info">View</button>
+                                            <span ng-show="templateFile.HasMarkupReferences == true">
+                                                &#10003;
+                                            </span>
+                                            <span ng-show="templateFile.HasMarkupReferences == false">
+                                                &times;
+                                            </span>
 
+                                        </td>
+                                        <td>
+                                            <button ng-click="vm.ViewContentPage(copyPair)" class="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 </tbody>

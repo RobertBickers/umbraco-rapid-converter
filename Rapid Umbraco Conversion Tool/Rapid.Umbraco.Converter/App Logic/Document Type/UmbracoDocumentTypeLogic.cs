@@ -33,6 +33,15 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             }
         }
 
+
+        public IEnumerable<RapidUmbracoConversionObject> GetConversionObjects(string templateDirectory, params string[] allowedExtensions)
+        {
+            return _fileReader.Convert(templateDirectory, allowedExtensions);
+
+        }
+
+
+
         public IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> ConvertMarkupToDocumentTypes(string templateDirectory, string[] allowedExtensions)
         {
             List<Tuple<RapidUmbracoConversionObject, IContentType>> pairedCollection = new List<Tuple<RapidUmbracoConversionObject, IContentType>>();
@@ -40,7 +49,7 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             List<IContentType> umbracoContentTypeList = new List<IContentType>();
 
             //Retrieve the conversion objects from the file system
-            foreach (var conversionObject in _fileReader.Convert(templateDirectory, allowedExtensions))
+            foreach (RapidUmbracoConversionObject conversionObject in GetConversionObjects(templateDirectory, allowedExtensions))
             {
                 Debug.WriteLine("Building Document Type from file:" + conversionObject.Name);
 

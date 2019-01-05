@@ -23,6 +23,13 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
             _templateLogic = new UmbracoTemplateLogic(services);
         }
 
+
+        public IEnumerable<RapidUmbracoConversionObject> GetConversionObjects(string templateDirectory, params string[] allowedExtensions)
+        {
+            return _documentTypeLogic.GetConversionObjects(templateDirectory, allowedExtensions);
+        }
+
+
         /// <summary>
         /// Deletes all of the document types within Umbraco 
         /// </summary>

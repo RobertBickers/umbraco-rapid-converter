@@ -7,15 +7,17 @@
     vm.GeneratedDocumentTypes = [];
     vm.GeneratedDocumentTypeNumber = 0;
 
+    vm.FoundTemplateFiles = [];
+
+
     vm.FileCopyPairCollection = [
         {
             VirtualPath: "~/React/Stuff",
             Source: "/Stuff",
             MarkupReference: "/MFR",
             DestinationFolder: "/STUFF"
-        },
-        {
-        }];
+        }
+    ];
 
     vm.NewFileCopyPairSource = {
         VirtualPath: "",
@@ -57,36 +59,60 @@
     });
 
 
-    vm.BeginConvert = function () {
+    vm.RefreshTemplatePath = function () {
+        //Go to the services, get the index files
 
-        if (vm.TemplatePath == '') {
-            alert("Please enter a valid template directory");
-            $("#templatePath").focus();
+
+        var postData = {};
+        postData.TemplateDirectory = vm.TemplatePath;
+
+
+        $.ajax({
+            type: "POST",
+            url: "/umbraco/backoffice/RapidUmbracoConverter/Converter/GetConvertableFiles",
+            contentType: "application/json; charsect=utf-8",
+            dataType: "json",
+            data: JSON.stringify(postData)
+        }).then(function (data) {
+            vm.FoundTemplateFiles = data
+        }, function () {
+
+        });
+
+
+
+    },
+
+        vm.BeginConvert = function () {
+
+            if (vm.TemplatePath == '') {
+                alert("Please enter a valid template directory");
+                $("#templatePath").focus();
+            }
+            else {
+
+                vm.Response = "Conversion Started";
+
+                var data = {};
+                data.TemplateDirectory = vm.TemplatePath;
+                data.CopyPairCollection = vm.FileCopyPairCollection;
+
+                $.ajax({
+                    type: "POST",
+                    url: "/umbraco/backoffice/RapidUmbracoConverter/Converter/BeginConvert",
+                    contentType: "application/json; charsect=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(data)
+                }).then(function (response) {
+                    vm.Response = response.Message;
+                    vm.GeneratedDocumentTypes = response.ContentTypes;
+                    vm.GeneratedDocumentTypeNumber = response.ContentTypes.length;
+
+                    alert("Post Complete");
+
+                }, function () {
+                    alert("There was an error");
+                });
+            }
         }
-        else {
-
-            vm.Response = "Conversion Started";
-
-            var data = {};
-            data.TemplateDirectory = vm.TemplatePath;
-            data.CopyPairCollection = vm.FileCopyPairCollection;
-
-            $.ajax({
-                type: "POST",
-                url: "/umbraco/backoffice/RapidUmbracoConverter/Converter/BeginConvert",
-                contentType: "application/json; charsect=utf-8",
-                dataType: "json",
-                data: JSON.stringify(data)
-            }).then(function () {
-                vm.Response = data.Message;
-                vm.GeneratedDocumentTypes = data.ContentTypes;
-                vm.GeneratedDocumentTypeNumber = data.ContentTypes.length;
-
-                alert("Post Complete");
-
-            }, function () {
-                alert("There was an error");
-            });
-        }
-    }
 });

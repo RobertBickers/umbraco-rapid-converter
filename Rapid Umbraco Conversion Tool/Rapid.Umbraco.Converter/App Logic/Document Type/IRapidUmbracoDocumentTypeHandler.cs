@@ -9,6 +9,8 @@ namespace Codetreehouse.RapidUmbracoConverter.Tools
     {
         void RemoveAllDocumentTypes(bool removeOnlyConverted);
 
+        IEnumerable<RapidUmbracoConversionObject> GetConversionObjects(string templateDirectory, params string[] allowedExtensions);
+
         IEnumerable<Tuple<RapidUmbracoConversionObject, IContentType>> ConvertMarkupToDocumentTypes(string templateDirectory, string[] allowedExtensions);
     }
 }
